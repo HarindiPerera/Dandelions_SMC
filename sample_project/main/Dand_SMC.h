@@ -70,7 +70,7 @@
 // Takes no @param, returns void, pulses watchdog for 1ms
 void pingWatchdog();       
 
-// @param boo dir , int  = number of steps
+// @param bool dir , int  = number of steps
 // drives motor in direction for x number of steps. 
 // returns Dandelion error code.
 int driveMotor(bool, int);   

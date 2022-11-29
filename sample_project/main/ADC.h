@@ -33,12 +33,15 @@ uint8_t *data_read;      //declare buffer
 /* Function Definition */
 
 i2c_config_t i2c_master_init(void);
+
 void i2c_master_read_slave(void);
 
 void i2c_master_cmd_set(void);
+
 void wd_pulse(void);
 
 void adc_pwr(bool en);
+
 void print_buffer(uint8_t *data_rd);
 
 #endif 

@@ -5,14 +5,13 @@
 *
 *************************/
 
-
 #include <string.h>
 #include <stdio.h>
 #include "sdkconfig.h"
 #include "esp_system.h"
 #include "esp_spi_flash.h"
 #include "freertos/FreeRTOS.h"
-#include "freertos/task.h"          // Allows for delays 
+#include "freertos/task.h"          // Allows for delays / tasks 
 #include "driver/gpio.h"            // need to include this to be able to use GPIO's
 #include "driver/i2c.h"             // for the ADC 
 #include "unity_test_runner.h"      // added for i2c functionality
@@ -23,6 +22,7 @@
 
 int error = 0;                      // Decaire error variable
 int pulses =500;                    // change this based on the number of pulses in either direction we want on TVAC day
+
 //___________________________________________APP__MAIN_______________________________________________
 
 void app_main(void){
@@ -37,8 +37,8 @@ gpio_set_level(MVEN, 1);        // Enable Motor voltage from E-Fuse
 
 // INFINITE LOOP // 
     while(1){   
-        ch = getchar();                             // if 'r' is pressed then the experiment will be run
-        if (ch == 'r'){
+        //ch = getchar();                                 // if 'r' is pressed then the experiment will be run
+        if (getchar() == 'r'){
             printf("RUN: Running Experiment\n");
 
             error = driveMotor(1,pulses);              // Spin motor one way for 500 pulses
@@ -84,12 +84,23 @@ gpio_set_level(MVEN, 1);        // Enable Motor voltage from E-Fuse
             printf("IDLE: Press'r' to run experiment once and 'q' to quit/restart.\n");
 
         }else if (ch == 'q'){                                                   // if 'q' is pressed in idel mode then 
-            printf("IDLE: Program quit by user from idle state, restarting.\n");      //[TODO] -> Borrow proper power down processes from other code
+            printf("IDLE: Program quit by user from idle state, restarting.\n");      
             break;
-        }else{
+        }else if (getchar() =='\033'){    // first value was escape 
+            getchar();                    // skip the next entry 
+            switch(getchar()){            // the real value
+                case 'A':               // Arrow up
+                    driveMotor(1,10);   // 10 is pulse length
+                break;
+                case 'B':               // Arrow down
+                    driveMotor(0,10);   // 
+                break;
+            }
+            
+        }else {
             vTaskDelay(100/ portTICK_PERIOD_MS);    // wait 0.1 second if in idle state
+            pingWatchdog();                             // ping the watchdog if in idle state
         }
-        pingWatchdog();                             // ping the watchdog if in idle state
     }
 
     /*CLEANUP*/
