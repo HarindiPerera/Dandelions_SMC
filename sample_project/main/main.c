@@ -168,5 +168,5 @@ gpio_set_level(MVEN, 1);         // Enable Motor voltage from E-Fuse
     /*CLEANUP*/
     enMotor(0);         // Disable all motor functions
     fflush(stdout);     // Clear terminal window
-    esp_restart();      // Restart the esp
+    esp_restart();      // Restart the esp (esp_system.c F12+click takes you to source)
 }
