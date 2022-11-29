@@ -10,7 +10,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"            // need to include this to be able to use GPIO's
-#include "Dandelions.h"             // This is our custom header file for the payload
+#include "Dand_SMC_Defs.h"          // Definitions of all the defined constants that we will be using in this main
 
 //___Function prototypes
 void pingWatchdog();            
@@ -61,26 +61,27 @@ void pingWatchdog(){
 }
 
 // Check the motor fault, the Fuse falt and the q button on the keybord. 
-// returns error code defined in Dandelions.h
+// returns error code defined in Dand_SMC_Defs.h
+
 int poll(){
     if(gpio_get_level(MFAULT) ==0){
         // Asserts Low in fault condition
         printf("ERROR: Motor Fault Detected. Returning to IDLE.\n");
-        return MOTOR_FAULT;             // Motor Fault code
+        return MOTOR_FAULT;       // Motor Fault code
     }
     if(gpio_get_level(FFAULT) == 0){
         //Asserts low in fault condition
         printf("ERROR: Fuse Fault Detected. Returning to IDLE.\n");
-        return FUSE_FAULT;           // fuse fualt code
+        return FUSE_FAULT;       // fuse fualt code
 
     }
     char c = getchar();
     if(c == 'q'){
         printf("RUN: Quit by user\n");
         printf("RUN: Returning to idle state.\n");
-        return FORCE_QUIT;          // quit experiment on keypress condition
+        return FORCE_QUIT;      // quit experiment on keypress condition
     }
-    return 1;               // for a success 
+    return 1;                   // for a success 
 }
 
 // Void return function that sets up the ESP32 in the SMC_D2 configuration
@@ -139,7 +140,7 @@ gpio_set_level(MVEN, 1);         // Enable Motor voltage from E-Fuse
                                                     /*Read sensors here*/
 
                 if(error == SUCCESS){
-                    printf("RUN: Experiment Successful! returning to idle.\n");                                  // print reverse spin success
+                    printf("RUN: Experiment Successful! returning to idle.\n");         // print reverse spin success
                 }else if (error == MOTOR_FAULT || error == FUSE_FAULT){
                     printf("ERROR: Experiment was auto interupted (2nd half).\n");      // Print that there was an "interupt" from somwehere. (user or hardware)
                     printf("ERROR: Restarting.\n");
