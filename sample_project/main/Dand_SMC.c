@@ -1,3 +1,7 @@
+// By jake sheath 2022
+//
+// This is the implementation of the functions protptypes in Daand_SMC.h
+
 #include <stdio.h>
 #include "sdkconfig.h"
 #include "esp_system.h"
