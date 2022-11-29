@@ -1,11 +1,17 @@
-/* ADC Comms 
+/***********************
+ 
+ADC Comms 
 Author :Harindi P
 DATE : 25/11/22
-*/
+
+************************/
 
 // Header guards
 #ifndef ADC_H_INCLUDED
 #define ADC_H_INCLUDED
+
+// [TODO] -> Get all of the definitions into one big file 
+//               so that every module has the same constants and constants names. 
 
 #define ADCLPWR 16                              //Left ADC power on gpio 16
 #define ADCRPWR 17                              //Right ADC power on gpio 17
@@ -15,7 +21,7 @@ DATE : 25/11/22
 #define I2C_SLAVE_SCL_IO
 
 #define I2C_MASTER_FREQ_HZ 100000
-#define I2C_MASTER_NUM I2C_NUM_0
+#define I2C_MASTER_NUM I2C_NUM_0                // [TODO] -> This define seems strange. 
 #define I2C_MASTER_TX_BUF_DISABLE  0            //i2c master does not need a buffer
 #define I2C_MASTER_RX_BUF_DISABLE  0            //i2c master does not need a buffer
 #define ESP_SLAVE_ADDR 0xD5                     //Device address 1101 | ADC1 : 100 | ADC2 : 010
@@ -31,6 +37,7 @@ DATE : 25/11/22
 uint8_t *data_read;      //declare buffer
 
 /* Function Definition */
+// [TODO] -> Write function descriptions
 
 i2c_config_t i2c_master_init(void);
 

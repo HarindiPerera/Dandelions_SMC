@@ -30,15 +30,15 @@ void app_main(void){
 char ch ='0';
 setupGpios();                   // Setup function for all the GPIOS in the SMC_D2 configuration
 i2c_master_cmd_set();           // Setup the i2c bus 
-printf("Dandelions SMCD2: Ready in idle state.\nIDLE: ");               // User instructions
-printf("Press 'r' to run experiment once and 'q' to quit/restart.\n");  // User instructions
+printf("Dandelions SMCD2: Ready in idle state.\n");               // User instructions
+printf("IDLE: Press 'r' to run experiment once and 'q' to quit/restart.\n");  // User instructions
 gpio_set_level(MVEN, 1);        // Enable Motor voltage from E-Fuse
 
 
 // INFINITE LOOP // 
     while(1){   
-        //ch = getchar();                                 // if 'r' is pressed then the experiment will be run
-        if (getchar() == 'r'){
+        ch = getchar();                                 // if 'r' is pressed then the experiment will be run
+        if (ch == 'r'){
             printf("RUN: Running Experiment\n");
 
             error = driveMotor(1,pulses);              // Spin motor one way for 500 pulses
@@ -91,9 +91,11 @@ gpio_set_level(MVEN, 1);        // Enable Motor voltage from E-Fuse
             switch(getchar()){            // the real value
                 case 'A':               // Arrow up
                     driveMotor(1,10);   // 10 is pulse length
+                    getchar();
                 break;
                 case 'B':               // Arrow down
                     driveMotor(0,10);   // 
+                    getchar();
                 break;
             }
             
