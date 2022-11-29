@@ -4,8 +4,8 @@
 
 /*
      Dandelions D1 GPIO LIST
-    GPIO    Func            IO          O_mask  I_Mask
-    IO00 = boot =            = Input    0       0
+    GPIO    Func            IO          O_mask  I_Mask  PDmask  PU mask
+    IO00 = boot =            = Input    0       0       
     IO01 =                              0       0
     IO02 = Spare/whatever               0       0
     IO03 =                              0       0
@@ -43,6 +43,8 @@
     IO35 = Motor fault      = Input     0       1      Interupt
     */
 
+
+
 // Defining gpio names as constant numbers. SMC D2
 
 #define ADCLPWR 16
@@ -55,24 +57,27 @@
 #define FFAULT 34
 #define MFAULT 35
 #define WDI 23
+// For these masks each bit coresponds to a gpio, bit 4 = gpio 4 ect
+#define OUTPUT_MASK 0x30E030020
+#define INPUT_MASK  0xC0E000000
 
+// Dandelion Error Codes
 #define SUCCESS 1
 #define MOTOR_FAULT -1
 #define FUSE_FAULT -2
 #define FORCE_QUIT -3
 
-// For these masks each bit coresponds to a gpio, bit 4 = gpio 4 ect
-
-#define OUTPUT_MASK 0x30E030020
-
-#define INPUT_MASK  0xC0E000000
-
 // Function protypes
 
+// Takes no @param, returns void, pulses watchdog for 1ms
 void pingWatchdog();       
 
+// @param boo dir , int  = number of steps
+// drives motor in direction for x number of steps. 
+// returns Dandelion error code.
 int driveMotor(bool, int);   
 
+// @param en =1 : enable motor, en=0 : Motor driver put into sleep mode. 
 void enMotor(bool en);  
 
 int poll();  
