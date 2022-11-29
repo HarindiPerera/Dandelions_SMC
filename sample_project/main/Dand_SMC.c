@@ -87,13 +87,15 @@ void setupGpios(){
     gpio_set_direction(MOTDIR, GPIO_MODE_OUTPUT);
     gpio_set_direction(MSLEEP, GPIO_MODE_OUTPUT);
     gpio_set_direction(MOTSTEP, GPIO_MODE_OUTPUT);
+    
+
     // Set all outputs to be pulldown resistors. 
     // Set all inputs to be pullup
     gpio_pullup_en(MFAULT);
     gpio_pullup_en(FFAULT);
     gpio_pulldown_en(MOTEN);
     gpio_pulldown_en(MVEN);
-    gpio_pulldown_en(WDI);
+    gpio_set_pull_mode(WDI, GPIO_PULLDOWN_ONLY);    // [TODO] -> Want to change all to this format. 
     gpio_pulldown_en(MOTDIR);
     gpio_pulldown_en(MSLEEP);
     gpio_pulldown_en(MOTSTEP);
