@@ -3,7 +3,7 @@
 #define DAND_SMC_H_INCLUDED
 
 /*
-     Dandelions D1 GPIO LIST
+     Dandelions D1 GPIO LIST and definitions
     GPIO    Func            IO          O_mask  I_Mask  PDmask  PU mask
     IO00 = boot =            = Input    0       0       
     IO01 =                              0       0
@@ -42,8 +42,6 @@
     IO34 = FUSE FAULT       = Input     0       1      Interupt
     IO35 = Motor fault      = Input     0       1      Interupt
     */
-
-
 
 // Defining gpio names as constant numbers. SMC D2
 
