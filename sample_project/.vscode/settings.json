@@ -1,8 +1,15 @@
 {
   "C_Cpp.intelliSenseEngine": "Tag Parser",
   "files.associations": {
-    "task.h": "c"
+    "task.h": "c",
+    "gpio.h": "c",
+    "i2c.h": "c",
+    "temp_sensor.h": "c",
+    "stdbool.h": "c",
+    "esp_intr_alloc.h": "c",
+    "soc.h": "c"
   },
   "idf.adapterTargetName": "esp32",
-  "idf.portWin": "COM5"
+  "idf.portWin": "COM5",
+  "cmake.configureOnOpen": false
 }
