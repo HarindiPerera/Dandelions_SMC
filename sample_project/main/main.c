@@ -32,9 +32,6 @@ Multiple external interrupts sources can share an interrupts slot by passing ESP
 
 Definately think i am going to steal from the interrupt example program. 
 
-so lets have lunch and then do that. 
-i am freaking starving. 
-
 
 */ 
 
