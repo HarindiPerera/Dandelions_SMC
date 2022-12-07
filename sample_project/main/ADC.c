@@ -7,11 +7,10 @@ This file containts the implementations of the functions prototypes in ADC.h
 ************************/
 
 //Libraries
-
 #include <stdio.h>
 #include <string.h>
 #include "sdkconfig.h"
-#include "freertos/FreeRTOS.h"
+#include "freertos/FreeRTOS.h"  // [TODO] -> assess weather or not this needs to be included here. 
 #include "freertos/task.h"
 #include "esp_system.h"
 #include "esp_spi_flash.h"
@@ -20,6 +19,7 @@ This file containts the implementations of the functions prototypes in ADC.h
 #include "unity_test_runner.h"
 
 #include "ADC.h"        // Header file
+#include "Dand_SMC.h"
 
 //uint8_t *data_read;      //declare buffer
 

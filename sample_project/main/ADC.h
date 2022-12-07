@@ -10,9 +10,8 @@ DATE : 25/11/22
 #ifndef ADC_H_INCLUDED
 #define ADC_H_INCLUDED
 
-// [TODO] -> Get all of the definitions into one big file 
-//               so that every module has the same constants and constants names. 
 
+/*
 #define ADCLPWR 16                              //Left ADC power on gpio 16
 #define ADCRPWR 17                              //Right ADC power on gpio 17
 #define I2C_MASTER_SDA_IO 21                    //ESP32 SDA 21  
@@ -30,7 +29,7 @@ DATE : 25/11/22
 
 #define DATA_LENGTH 512                         //Max Buffer Len
 #define RW_LENGTH 129                           //Reg READ_WRITE len 
-
+*/
 
 // Function prototypes
 
@@ -44,8 +43,6 @@ i2c_config_t i2c_master_init(void);
 void i2c_master_read_slave(void);
 
 void i2c_master_cmd_set(void);
-
-void wd_pulse(void);
 
 void adc_pwr(bool en);
 
